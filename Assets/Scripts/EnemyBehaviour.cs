@@ -6,11 +6,15 @@ using UnityEngine;
 public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpForce;
     
     private float _xVector;
-
+    private Animator _animator;
+    private Rigidbody2D _rigidbody2D;
     private void Start()
     {
+        _animator = GetComponent<Animator>();
+        _rigidbody2D = GetComponent<Rigidbody2D>();
         _xVector = -1f;
     }
 
@@ -37,5 +41,16 @@ public class EnemyBehaviour : MonoBehaviour
     {
         _xVector = -_xVector; // Change the direction by negating _xVector
         transform.localScale = (Vector3)new Vector2(-_xVector, transform.localScale.y);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            _animator.SetBool("IsAlive",false);
+            _rigidbody2D.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
+            moveSpeed = 1f;
+            Destroy(gameObject.GetComponent<BoxCollider2D>());
+        }
     }
 }
