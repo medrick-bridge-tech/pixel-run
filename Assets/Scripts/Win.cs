@@ -18,8 +18,14 @@ public class Win : MonoBehaviour
             winners.Add(other.gameObject);
             Destroy(other.gameObject.GetComponent<PlayerMovement>());
             other.GetComponent<Animator>().SetFloat("Speed", 0);
-            winUI.SetActive(true);
             GetComponent<AudioSource>().PlayOneShot(audioClip);
+            StartCoroutine(DisplayWinUI());
         }
+    }
+
+    private IEnumerator DisplayWinUI()
+    {
+        yield return new WaitForSeconds(3f);
+        winUI.SetActive(true);
     }
 }
