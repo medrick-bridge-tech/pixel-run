@@ -11,10 +11,26 @@ public class PlayerMovement : MonoBehaviour
 
     private float _distanceFromEarth = 0.5f;
     private float _xVector;
+    private bool _moveable;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private CinemachineVirtualCamera _cvm;
-    
+
+    private void OnEnable()
+    {
+        Timer.Instance.onFinishCountDown += EnableMoving;
+    }
+
+    private void OnDisable()
+    {
+        Timer.Instance.onFinishCountDown -= EnableMoving;
+    }
+
+    private void Awake()
+    {
+        _moveable = false;
+    }
+
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -30,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Run()
     {
-        if (_animator.GetBool("IsAlive"))
+        if (_animator.GetBool("IsAlive") && _moveable)
         {
             _xVector = Input.GetAxisRaw("Horizontal");
             transform.position += (Vector3)new Vector2(_xVector * moveSpeed * Time.deltaTime, 0);
@@ -40,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && CheckDistanceFromEarth())
+        if (Input.GetKeyDown(KeyCode.Space) && CheckDistanceFromEarth() && _moveable)
         {
             _rigidbody2D.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
         }
@@ -88,5 +104,10 @@ public class PlayerMovement : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private void EnableMoving()
+    {
+        _moveable = true;
     }
 }
