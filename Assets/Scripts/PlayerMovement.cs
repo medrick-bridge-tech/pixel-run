@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _cvm = GetComponentInChildren<CinemachineVirtualCamera>();
         _animator = GetComponent<Animator>();
     }
 
@@ -88,20 +87,6 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             return false;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("do");
-            _animator.SetBool("IsAlive",false);
-            Destroy(GetComponent<BoxCollider2D>());
-            _rigidbody2D.AddForce(new Vector2(0,jumpSpeed),ForceMode2D.Impulse);
-            GameObject crow = new GameObject();
-            crow.transform.position = transform.position;
-            _cvm.Follow = crow.transform;
         }
     }
 }
