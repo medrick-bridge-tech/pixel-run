@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
-public class UIProgress : MonoBehaviour
+public class PositionMapper : MonoBehaviour
 {
     [SerializeField] private Transform start;
     [SerializeField] private Transform end;
@@ -14,6 +14,7 @@ public class UIProgress : MonoBehaviour
     [SerializeField] private GameObject target;
     
     private float _distance;
+    
     private void Awake()
     {
         _distance = (end.position.x - start.position.x);
@@ -28,6 +29,6 @@ public class UIProgress : MonoBehaviour
     private void CheckPlayerPosition()
     {
         var position = Mathf.InverseLerp(start.position.x, end.position.x, target.transform.position.x);
-        slider.value = Mathf.InverseLerp(slider.minValue, slider.maxValue, position);
+        slider.value = Mathf.Lerp(slider.minValue, slider.maxValue, position);
     }
 }
