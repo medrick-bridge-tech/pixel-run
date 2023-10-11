@@ -11,6 +11,7 @@ public class Timer : MonoBehaviour
     [SerializeField] private TextMeshProUGUI timerText;
 
     private float _currentTime;
+    
     private void Start()
     {
         _currentTime = counterTime;
@@ -31,7 +32,7 @@ public class Timer : MonoBehaviour
 
     private void DecreaseTime()
     {
-        _currentTime -= 1 * Time.deltaTime;
+        _currentTime -=  Time.deltaTime;
     }
 
     private void DisplayTime()
