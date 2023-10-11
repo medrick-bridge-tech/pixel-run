@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
+    [SerializeField] private Timer timer;
 
     private float _distanceFromEarth = 0.5f;
     private float _xVector;
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        StartCoroutine(CheckTimer());
     }
 
     private void Update()
@@ -92,5 +95,20 @@ public class PlayerMovement : MonoBehaviour
             return true;
         
         return false;
+    }
+
+    private IEnumerator CheckTimer()
+    {
+        while (true)
+        {
+            if (timer.ReturnTime() <= 0)
+            {
+                Debug.Log("mOVEANLE");
+                _moveable = true;
+                yield break;
+            }
+            Debug.Log(timer.ReturnTime());
+            yield return null;
+        }
     }
 }

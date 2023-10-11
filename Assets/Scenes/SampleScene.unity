@@ -33500,6 +33500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpSpeed: 7
+  timer: {fileID: 1034516794}
 --- !u!114 &1898077756
 MonoBehaviour:
   m_ObjectHideFlags: 0
