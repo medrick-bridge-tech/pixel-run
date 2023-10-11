@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
-public class Win : MonoBehaviour
+public class RaceWinHandler : MonoBehaviour
 {
     [SerializeField] private List<GameObject> winners = new List<GameObject>();
     [SerializeField] private GameObject winUI;
