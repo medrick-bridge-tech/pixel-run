@@ -11,6 +11,8 @@ public class EnemyBehaviour : MonoBehaviour
     private float _xVector;
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
+    private BoxCollider2D _boxCollider2D;
+
     private void Start()
     {
         _animator = GetComponent<Animator>();
@@ -31,15 +33,12 @@ public class EnemyBehaviour : MonoBehaviour
         var hit = Physics2D.Raycast(transform.position, _xVector * transform.right, 0.5f,
             LayerMask.GetMask("Ground"));
         if (hit.collider != null)
-        {
             Flip();
-        }
     }
-
-
+    
     private void Flip()
     {
-        _xVector = -_xVector; // Change the direction by negating _xVector
+        _xVector = -_xVector;
         transform.localScale = (Vector3)new Vector2(-_xVector, transform.localScale.y);
     }
 
@@ -50,7 +49,7 @@ public class EnemyBehaviour : MonoBehaviour
             _animator.SetBool("IsAlive",false);
             _rigidbody2D.AddForce(new Vector2(0,jumpForce),ForceMode2D.Impulse);
             moveSpeed = 1f;
-            Destroy(gameObject.GetComponent<BoxCollider2D>());
+            Destroy(gameObject.GetComponent<_boxCollider2D>());
         }
     }
 }
