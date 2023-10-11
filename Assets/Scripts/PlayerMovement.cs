@@ -14,17 +14,6 @@ public class PlayerMovement : MonoBehaviour
     private bool _moveable;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
-    private CinemachineVirtualCamera _cvm;
-
-    private void OnEnable()
-    {
-        Timer.Instance.onFinishCountDown += EnableMoving;
-    }
-
-    private void OnDisable()
-    {
-        Timer.Instance.onFinishCountDown -= EnableMoving;
-    }
 
     private void Awake()
     {
@@ -39,75 +28,69 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        Run();
-        Jump();
+        InputHandler2D();
+        HandleMove();
         HandleAnimation();
+    }
+
+    private void InputHandler2D()
+    {
+        _xVector = Input.GetAxisRaw("Horizontal");
+    }
+    
+    private void HandleMove()
+    {
+        if (_animator.GetBool("IsAlive") && _moveable)
+        {
+            Run();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && IsOnGround() && _moveable)
+        {
+            Jump();
+        }
+
+        if (_xVector != 0)
+        {
+            ChangeScale(new Vector2(_xVector,transform.localScale.y));
+        }
     }
 
     private void Run()
     {
-        if (_animator.GetBool("IsAlive") && _moveable)
-        {
-            _xVector = Input.GetAxisRaw("Horizontal");
-            transform.position += (Vector3)new Vector2(_xVector * moveSpeed * Time.deltaTime, 0);
-            Flip();
-        }
+        transform.position += (Vector3)new Vector2(_xVector * moveSpeed * Time.deltaTime, 0);
     }
 
     private void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && CheckDistanceFromEarth() && _moveable)
-        {
-            _rigidbody2D.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
-        }
+        _rigidbody2D.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
     }
 
-    private void Flip()
+    private void ChangeScale(Vector2 value)
     {
-        if (_xVector != 0)
-        {
-            transform.localScale = (Vector3)new Vector2(_xVector, 1);
-        }
+        transform.localScale = value;
     }
 
     private void HandleAnimation()
     {
         if (_xVector != 0 && !_animator.GetBool("IsJump"))
-        {
             _animator.SetFloat("Speed", 1);
-        }
         else
-        {
             _animator.SetFloat("Speed", 0);
-        }
 
-        if (!CheckDistanceFromEarth())
-        {
+        if (!IsOnGround())
             _animator.SetBool("IsJump", true);
-        }
         else
-        {
             _animator.SetBool("IsJump", false);
-        }
-
     }
 
-    private bool CheckDistanceFromEarth()
+    private bool IsOnGround()
     {
         RaycastHit2D hit;
         hit = Physics2D.Raycast(transform.position, -transform.up, _distanceFromEarth, LayerMask.GetMask("Ground"));
         if (hit.collider != null)
-        {
             return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    private void EnableMoving()
-    {
-        _moveable = true;
+        
+        return false;
     }
 }
