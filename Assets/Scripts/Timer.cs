@@ -5,13 +5,11 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Timer : MonoBehaviourSingleton<Timer>
+public class Timer : MonoBehaviour
 {
     [SerializeField] private float counterTime;
     [SerializeField] private TextMeshProUGUI timerText;
 
-    public Action onFinishCountDown;
-    
     private float _currentTime;
     private void Start()
     {
@@ -20,14 +18,13 @@ public class Timer : MonoBehaviourSingleton<Timer>
 
     private void Update()
     {
-        if (_currentTime > 0)
+        if (_currentTime >= 0)
         {
             DecreaseTime();
             DisplayTime();
         }
         else
         {
-            onFinishCountDown?.Invoke();
             Destroy(timerText);
         }
     }
@@ -40,5 +37,10 @@ public class Timer : MonoBehaviourSingleton<Timer>
     private void DisplayTime()
     {
         timerText.text = _currentTime.ToString("0");
+    }
+
+    public float ReturnTime()
+    {
+        return _currentTime;
     }
 }
