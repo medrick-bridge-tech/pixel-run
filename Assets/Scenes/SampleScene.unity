@@ -748,7 +748,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.64, y: 1.08}
+  m_Size: {x: 0.53333336, y: 0.9}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -808,7 +808,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.53333336, y: 0.9}
-    newSize: {x: 0.64, y: 1.08}
+    newSize: {x: 0.53333336, y: 0.9}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -869,7 +869,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.53333336, y: 0.9}
-    newSize: {x: 0.64, y: 1.08}
+    newSize: {x: 0.53333336, y: 0.9}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -33650,6 +33650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 5
   jumpSpeed: 7
+  timer: {fileID: 1034516794}
 --- !u!114 &1898077756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33821,8 +33822,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Timer
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: e0bb0548e0a22524bba1985f267c1b58, type: 2}
-  m_sharedMaterial: {fileID: -7789423240945551321, guid: e0bb0548e0a22524bba1985f267c1b58, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
