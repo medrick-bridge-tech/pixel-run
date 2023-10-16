@@ -13,8 +13,8 @@ public class SkinCardDisplayer : MonoBehaviour
     [SerializeField] private GameObject cardsPrefab;
     [SerializeField] private HorizontalLayoutGroup cardsGroup;
     [Space]
-    [SerializeField] private StartSkinCardIndexChanger increaseFrame;
-    [SerializeField] private StartSkinCardIndexChanger decreaseFrame;
+    [SerializeField] private ScrollPreviewNavigator forwardScroll;
+    [SerializeField] private ScrollPreviewNavigator backwardScroll;
 
     public Action<SkinCardController> onRegisterSkinCard;
     public int startCardIndex;
@@ -27,14 +27,14 @@ public class SkinCardDisplayer : MonoBehaviour
 
     private void OnEnable()
     {
-        increaseFrame.onIncreaseFrame += IncreaseFrame;
-        decreaseFrame.onDecreaseFrame += DecreaseFrame;
+        forwardScroll.onForwardScroll += ForwardScroll;
+        backwardScroll.onBackwardScroll += BackwardScroll;
     }
     
     private void OnDisable()
     {
-        increaseFrame.onIncreaseFrame -= IncreaseFrame;
-        decreaseFrame.onDecreaseFrame -= DecreaseFrame;
+        forwardScroll.onForwardScroll -= ForwardScroll;
+        backwardScroll.onBackwardScroll -= BackwardScroll;
     }
 
     private void SpawnCards()
@@ -64,7 +64,7 @@ public class SkinCardDisplayer : MonoBehaviour
             Destroy(card.gameObject);
     }
 
-    private void IncreaseFrame()
+    private void ForwardScroll()
     {
         RemoveCards();
         if (startCardIndex < skins.SkinCards.Count - skinCountPerRow)
@@ -72,7 +72,7 @@ public class SkinCardDisplayer : MonoBehaviour
         SpawnCards();
     }
     
-    private void DecreaseFrame()
+    private void BackwardScroll()
     {
         RemoveCards();
         if (startCardIndex - skinCountPerRow >= 0)

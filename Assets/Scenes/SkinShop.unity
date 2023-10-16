@@ -1428,8 +1428,8 @@ MonoBehaviour:
   skinCountPerRow: 4
   cardsPrefab: {fileID: 4477762638553863630, guid: e053ad791fb9e214b8a640fe45dd6d66, type: 3}
   cardsGroup: {fileID: 1163826608}
-  increaseFrame: {fileID: 77471879}
-  decreaseFrame: {fileID: 1632940559}
+  forwardScroll: {fileID: 77471879}
+  backwardScroll: {fileID: 1632940559}
   startCardIndex: 0
 --- !u!4 &2081067547
 Transform:

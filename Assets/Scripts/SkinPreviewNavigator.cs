@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using Image = UnityEngine.UI.Image;
 
-public class CurrentSkinCardDisplayer : MonoBehaviour
+public class SkinPreviewNavigator : MonoBehaviour
 {
     [SerializeField] private List<SkinCardController> skinCards;
     [SerializeField] private Image skinImagePlace;
