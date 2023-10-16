@@ -15,7 +15,8 @@ public class SkinCardDisplayer : MonoBehaviour
     [Space]
     [SerializeField] private StartSkinCardIndexChanger increaseFrame;
     [SerializeField] private StartSkinCardIndexChanger decreaseFrame;
-    
+
+    public Action<SkinCardController> onRegisterSkinCard;
     public int startCardIndex;
 
     private void Start()
@@ -50,7 +51,9 @@ public class SkinCardDisplayer : MonoBehaviour
     {
         var card = Instantiate(cardsPrefab, Vector2.zero, Quaternion.identity);
         card.transform.SetParent(cardsGroup.transform);
-        card.GetComponent<SkinCardController>().SetCard(skinCard.skinSprite,skinCard.name);
+        SkinCardController skinCardController = card.GetComponent<SkinCardController>();
+        skinCardController.SetCard(skinCard.skinSprite,skinCard.name);
+        onRegisterSkinCard.Invoke(skinCardController);
     }
 
     private void RemoveCards()
