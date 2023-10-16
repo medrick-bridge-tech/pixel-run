@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class SkinCardDisplayer : MonoBehaviour
@@ -11,19 +12,16 @@ public class SkinCardDisplayer : MonoBehaviour
     [SerializeField] private int skinCountPerRow;
     [SerializeField] private GameObject cardsPrefab;
     [SerializeField] private HorizontalLayoutGroup cardsGroup;
-    [Space] 
-    [SerializeField] private ChangeFrame increaseFrame;
-    [SerializeField] private ChangeFrame decreaseFrame;
+    [Space]
+    [SerializeField] private StartSkinCardIndexChanger increaseFrame;
+    [SerializeField] private StartSkinCardIndexChanger decreaseFrame;
     
-    public int frame;
-
-    public int SkinCountPerRow => skinCountPerRow;
+    public int startCardIndex;
 
     private void Start()
     {
-        frame = 0;
+        startCardIndex = 0;
         SpawnCards();
-        Debug.Log(PlayerPrefs.GetString("skin"));
     }
 
     private void OnEnable()
@@ -41,9 +39,9 @@ public class SkinCardDisplayer : MonoBehaviour
     private void SpawnCards()
     {
         RemoveCards();
-        for (var i = frame; i < frame + skinCountPerRow; i++)
+        for (var i = startCardIndex; i < startCardIndex + skinCountPerRow; i++)
         {
-            if(i<skins.SkinCards.Count)
+            if (i < skins.SkinCards.Count)
                 CreateCard(skins.SkinCards[i]);
         }
     }
@@ -52,11 +50,7 @@ public class SkinCardDisplayer : MonoBehaviour
     {
         var card = Instantiate(cardsPrefab, Vector2.zero, Quaternion.identity);
         card.transform.SetParent(cardsGroup.transform);
-        
         card.GetComponent<SkinCardController>().SetCard(skinCard.skinSprite,skinCard.name);
-        
-        if(skinCard.skinSprite.name == PlayerPrefs.GetString("skin"))
-            card.GetComponent<Image>().color = Color.red;
     }
 
     private void RemoveCards()
@@ -64,24 +58,22 @@ public class SkinCardDisplayer : MonoBehaviour
         var cards = cardsGroup.GetComponentsInChildren<SkinCardController>();
         
         foreach (var card in cards)
-        {
             Destroy(card.gameObject);
-        }
     }
 
     private void IncreaseFrame()
     {
         RemoveCards();
-        if(frame < skins.SkinCards.Count - skinCountPerRow)
-            frame += SkinCountPerRow;
+        if (startCardIndex < skins.SkinCards.Count - skinCountPerRow)
+            startCardIndex += skinCountPerRow;
         SpawnCards();
     }
     
     private void DecreaseFrame()
     {
         RemoveCards();
-        if(frame - SkinCountPerRow >= 0)
-            frame -= SkinCountPerRow;
+        if (startCardIndex - skinCountPerRow >= 0)
+            startCardIndex -= skinCountPerRow;
         SpawnCards();
     }
 }

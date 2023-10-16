@@ -19,6 +19,5 @@ public class SkinCardController : MonoBehaviour
     public void SelectSkin()
     {
         PlayerPrefs.SetString("skin",cardSkin.sprite.name);
-        Debug.Log(cardSkin.sprite.name);
     }
 }
