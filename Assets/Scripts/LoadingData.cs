@@ -4,5 +4,5 @@ using UnityEngine;
 
 public static class LoadingData
 {
-    public static string SceneToLoad = "SampleScene";
+    public static string SceneToLoad = "Menu";
 }

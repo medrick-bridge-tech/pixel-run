@@ -1154,7 +1154,7 @@ MonoBehaviour:
         m_MethodName: LoadByObject
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
+          m_ObjectArgument: {fileID: 102900000, guid: 0405e96fbcc6dbb4b9689f447e138d74, type: 3}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0

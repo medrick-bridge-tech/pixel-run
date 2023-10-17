@@ -7,11 +7,13 @@ public class LoadScene : MonoBehaviour
 {
     public void LoadByName(string sceneName)
     {
-        SceneManager.LoadScene(sceneName);
+        LoadingData.SceneToLoad = sceneName;
+        SceneManager.LoadScene("Loading");
     }
 
     public void LoadByObject(Object sceneObject)
     {
-        SceneManager.LoadScene(sceneObject.name);
+        LoadingData.SceneToLoad = sceneObject.name;
+        SceneManager.LoadScene("Loading");
     }
 }
