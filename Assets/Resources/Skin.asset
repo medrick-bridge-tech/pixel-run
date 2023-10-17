@@ -13,18 +13,6 @@ MonoBehaviour:
   m_Name: Skin
   m_EditorClassIdentifier: 
   skinCards:
-  - name: Amir
+  - name: Mario
     price: 0
-    skinSprite: {fileID: -2067559438, guid: 3b60c5217f49ac143b6c935ed0b56d3c, type: 3}
-  - name: Super Mario
-    price: 0
-    skinSprite: {fileID: -1647082010, guid: 3b60c5217f49ac143b6c935ed0b56d3c, type: 3}
-  - name: Spider Man
-    price: 0
-    skinSprite: {fileID: 1749363544, guid: 3b60c5217f49ac143b6c935ed0b56d3c, type: 3}
-  - name: Luigi
-    price: 0
-    skinSprite: {fileID: 1548902419, guid: 3b60c5217f49ac143b6c935ed0b56d3c, type: 3}
-  - name: Eragon
-    price: 0
-    skinSprite: {fileID: 16474455, guid: 3b60c5217f49ac143b6c935ed0b56d3c, type: 3}
+    skinSprite: {fileID: 524735249, guid: 40aba8f5904945e44844244a51ada4f2, type: 3}
