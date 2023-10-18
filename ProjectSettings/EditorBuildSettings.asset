@@ -10,12 +10,18 @@ EditorBuildSettings:
     guid: e78fd6842f72c99418d23df0d621d049
   - enabled: 1
     path: Assets/Scenes/Menu.unity
-    guid: 9e83de41cc476b8409b9721fdbc24c38
+    guid: 6002be13362e48c45b10427150117982
   - enabled: 1
     path: Assets/Scenes/SkinShop.unity
     guid: 0405e96fbcc6dbb4b9689f447e138d74
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Lobby.unity
+    guid: 9e83de41cc476b8409b9721fdbc24c38
+  - enabled: 1
+    path: Assets/Scenes/WaitingRoom.unity
+    guid: c0b0fb4689c280445ac65c56197ecb71
+  - enabled: 1
+    path: Assets/Scenes/Room1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/Scenes/Room2.unity

@@ -1,18 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class LoadSceneProgress : MonoBehaviour
+public class LoadSceneProgress : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Image loadingProgressFillImage;
     
-    private AsyncOperation _loadOperation; 
-    
+    private AsyncOperation _loadOperation;
+
     private void Start()
     {
-        _loadOperation = SceneManager.LoadSceneAsync(LoadingData.SceneToLoad);
+        if(PhotonNetwork.IsConnectedAndReady)
+            StartLoadingProgress();
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        StartLoadingProgress();
     }
 
     private void Update()
@@ -20,8 +28,14 @@ public class LoadSceneProgress : MonoBehaviour
         DisplayProgress();
     }
 
+    private void StartLoadingProgress()
+    {
+        _loadOperation = SceneManager.LoadSceneAsync(LoadingData.SceneToLoad);
+    }
+    
     private void DisplayProgress()
     {
-        loadingProgressFillImage.fillAmount = Mathf.Clamp01(_loadOperation.progress / 0.9f);
+        if(_loadOperation != null)
+            loadingProgressFillImage.fillAmount = Mathf.Clamp01(_loadOperation.progress / 0.9f);
     }
 }
