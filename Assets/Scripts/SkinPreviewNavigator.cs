@@ -10,6 +10,15 @@ public class SkinPreviewNavigator : MonoBehaviour
     [SerializeField] private Image skinImagePlace;
     [SerializeField] private SkinCardDisplayer skinCardDisplayer;
 
+    private void Start()
+    {
+        var skinPrefab = PlayerPrefs.GetString("skin");
+        if (skinPrefab != null)
+            skinImagePlace.sprite = Resources.Load<GameObject>(PlayerPrefs.GetString("skin")).GetComponent<SpriteRenderer>().sprite;
+        else
+            skinImagePlace.sprite = Resources.Load<GameObject>("Mario_Prefab").GetComponent<SpriteRenderer>().sprite;
+    }
+    
     private void OnEnable()
     {
         skinCardDisplayer.onRegisterSkinCard += RegisterCard;
