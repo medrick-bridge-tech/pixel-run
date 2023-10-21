@@ -22,6 +22,7 @@ public class WaitingRoomHandler : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom.PlayerCount == PhotonNetwork.CurrentRoom.MaxPlayers)
         {
             SceneManager.LoadScene("Room1");
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
     }
 
