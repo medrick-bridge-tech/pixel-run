@@ -15,4 +15,13 @@ MonoBehaviour:
   skinCards:
   - name: Mario
     price: 0
-    skinSprite: {fileID: 524735249, guid: 40aba8f5904945e44844244a51ada4f2, type: 3}
+    skinIcon: {fileID: 524735249, guid: 40aba8f5904945e44844244a51ada4f2, type: 3}
+    skinPrefab: {fileID: 8308197885182910433, guid: bcfda7c275a2fc849ae08e7f57df771e, type: 3}
+  - name: Luigi
+    price: 0
+    skinIcon: {fileID: 2022146238, guid: 5ab83176a3e3ade4dbcfe50e2ebcc565, type: 3}
+    skinPrefab: {fileID: 5917806027102572362, guid: 48d039e2a9ca19d46bb3310cabe079cf, type: 3}
+  - name: Rex
+    price: 0
+    skinIcon: {fileID: -745971593, guid: 2b80fd80e8a31064d8261535559ccfc4, type: 3}
+    skinPrefab: {fileID: 7115436864945576293, guid: 346f3cd89959d68458aae902fb282e5e, type: 3}
