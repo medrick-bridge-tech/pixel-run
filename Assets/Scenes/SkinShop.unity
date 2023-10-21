@@ -1762,6 +1762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75444ed035a281041b3b528adfda4e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneList: []
 --- !u!1 &2081067545
 GameObject:
   m_ObjectHideFlags: 0
@@ -1791,7 +1792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fb4d8d1d4a9cb944b34f94a130645f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skins: {fileID: 11400000, guid: c0433cf8f1fe4ee499cd273639658deb, type: 2}
+  skins: {fileID: 11400000, guid: c5e9ff56985aef24cb54a88bb7d03ac4, type: 2}
   skinCountPerRow: 4
   cardsPrefab: {fileID: 4477762638553863630, guid: e053ad791fb9e214b8a640fe45dd6d66, type: 3}
   cardsGroup: {fileID: 1163826608}
