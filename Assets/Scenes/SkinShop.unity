@@ -1702,14 +1702,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2047306920}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: LoadByObject
-        m_Mode: 2
+        m_MethodName: LoadByName
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 102900000, guid: 9e83de41cc476b8409b9721fdbc24c38, type: 3}
+          m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Menu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2047306918
