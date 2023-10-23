@@ -30,5 +30,6 @@ public class PositionMapper : MonoBehaviour
     public void SetTarget(GameObject targetObject)
     {
         target = targetObject;
+        slider.handleRect.GetComponent<Image>().sprite = targetObject.GetComponent<SpriteRenderer>().sprite;
     }
 }
