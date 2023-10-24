@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        _moveable = true;
+        _moveable = false;
     }
 
     private void Start()
@@ -95,8 +95,8 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    private void OnDestroy()
+    public void Unfreeze()
     {
-        Debug.Log("We are destroyed");
+        _moveable = true;
     }
 }
