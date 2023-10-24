@@ -10,10 +10,27 @@ public class GameManager : MonoBehaviourPun
 {
     [SerializeField] private Transform startPosition;
     [SerializeField] private PositionMapper positionMapper;
-    
+    [SerializeField] private PhotonCountdown photonCountdown;
+
+    private GameObject _player;
+    private void OnEnable()
+    {
+        photonCountdown.onRaceStart += StartRace;
+    }
+
+    private void OnDisable()
+    {
+        photonCountdown.onRaceStart -= StartRace;
+    }
+
     private void Awake()
     {
-        var player = PhotonNetwork.Instantiate("Player", startPosition.position, Quaternion.identity);
-        positionMapper.SetTarget(player);
+        _player = PhotonNetwork.Instantiate("Player", startPosition.position, Quaternion.identity);
+        positionMapper.SetTarget(_player);
+    }
+
+    private void StartRace()
+    {
+        _player.GetComponent<PlayerMovement>().Unfreeze();
     }
 }
