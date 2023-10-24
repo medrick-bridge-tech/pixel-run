@@ -7,14 +7,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Move Properties")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
-
+    [Header("Sound Properties")]
+    [SerializeField] private AudioClip jumpSound;
+    [SerializeField] private AudioClip kickSound;
+    
     private float _distanceFromEarth = 0.5f;
     private float _xVector;
     private bool _moveable;
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -25,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -48,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && IsOnGround() && _moveable)
         {
+            _audioSource.PlayOneShot(jumpSound);
             Jump();
         }
 
@@ -83,6 +90,15 @@ public class PlayerMovement : MonoBehaviour
             _animator.SetBool("IsJump", true);
         else
             _animator.SetBool("IsJump", false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            _rigidbody2D.AddForce(transform.up*jumpSpeed*2,ForceMode2D.Impulse);
+            _audioSource.PlayOneShot(kickSound);
+        }
     }
 
     private bool IsOnGround()
