@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviourPun
 {
     [SerializeField] private Transform startPosition;
     [SerializeField] private PositionMapper positionMapper;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private PhotonCountdown photonCountdown;
 
     private GameObject _player;
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviourPun
         _player = PhotonNetwork.Instantiate("Player", startPosition.position, Quaternion.identity);
         positionMapper.SetTarget(_player);
         positionMapper.UpdateGraphics(_player.GetComponent<SpriteRenderer>().sprite);
+        virtualCamera.Follow = _player.transform;
     }
 
     private void StartRace()
