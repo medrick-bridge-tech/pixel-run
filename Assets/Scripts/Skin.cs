@@ -10,16 +10,12 @@ public class Skin : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _sprite = GetComponent<SpriteRenderer>();
-
-        if (PlayerPrefs.HasKey("skin"))
-        {
-            var skinPrefab = Resources.Load<GameObject>(PlayerPrefs.GetString("skin"));
-            _animator.runtimeAnimatorController = skinPrefab.GetComponent<Animator>().runtimeAnimatorController;
-            _sprite.sprite = skinPrefab.GetComponent<SpriteRenderer>().sprite;
-        }
-        else
-        {
-            _animator.runtimeAnimatorController = Resources.Load<GameObject>("Mario_Prefab").GetComponent<Animator>().runtimeAnimatorController;
-        }
+        
+        var skin = PlayerPrefs.GetString(PlayerPrefKeys.SKIN, "Mario");
+        var path = $"{skin}/{skin}";
+        var animator = Resources.Load<RuntimeAnimatorController>(path);
+        _animator.runtimeAnimatorController = animator;
+        var sprite = Resources.Load<Sprite>(path);
+        _sprite.sprite = sprite;
     }
 }

@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviourPun
     {
         _player = PhotonNetwork.Instantiate("Player", startPosition.position, Quaternion.identity);
         positionMapper.SetTarget(_player);
+        positionMapper.UpdateGraphics(player.GetComponent<SpriteRenderer>().sprite);
     }
 
     private void StartRace()
