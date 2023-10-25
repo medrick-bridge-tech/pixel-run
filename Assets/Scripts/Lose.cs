@@ -12,12 +12,10 @@ public class Lose : MonoBehaviour
 
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
-    private CinemachineVirtualCamera _cvm;
 
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _cvm = GetComponentInChildren<CinemachineVirtualCamera>();
         _animator = GetComponent<Animator>();
     }
     
@@ -31,7 +29,6 @@ public class Lose : MonoBehaviour
             _rigidbody2D.AddForce(new Vector2(0,loseJump),ForceMode2D.Impulse);
             GameObject crow = new GameObject();
             crow.transform.position = transform.position;
-            _cvm.Follow = crow.transform;
             GetComponent<AudioSource>().PlayOneShot(loseSound);
             StartCoroutine(DisplayLoseUI());
         }
