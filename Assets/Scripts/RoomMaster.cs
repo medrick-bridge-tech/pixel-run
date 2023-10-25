@@ -12,12 +12,17 @@ using Random = UnityEngine.Random;
 public class RoomMaster : MonoBehaviourPunCallbacks
 {
     [SerializeField] private int roomCapacity = 2;
-
+    [SerializeField] private int roomIDDigits;
+    
+    
     public void HostRoom()
     {
-        var randomID = Random.Range(1000000, 9999999);
-        PhotonNetwork.CreateRoom(randomID.ToString(),new RoomOptions { MaxPlayers = roomCapacity}, TypedLobby.Default);
-        Debug.Log($"Room Created{randomID}");
+        string roomID = "";
+        for (int i = 0; i < roomIDDigits; i++)
+        {
+            roomID += Random.Range(0, 10).ToString();
+        }
+        PhotonNetwork.CreateRoom(roomID,new RoomOptions { MaxPlayers = roomCapacity}, TypedLobby.Default);
     }
 
     public void JoinRoom(TMP_InputField roomID)
