@@ -1224,6 +1224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomCapacity: 2
+  roomIDDigits: 3
 --- !u!1 &1098088934
 GameObject:
   m_ObjectHideFlags: 0
