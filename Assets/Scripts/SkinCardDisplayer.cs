@@ -52,7 +52,7 @@ public class SkinCardDisplayer : MonoBehaviour
         var card = Instantiate(cardsPrefab, Vector2.zero, Quaternion.identity);
         card.transform.SetParent(cardsGroup.transform);
         SkinCardController skinCardController = card.GetComponent<SkinCardController>();
-        skinCardController.SetCard(skinCard.skinSprite,skinCard.name);
+        skinCardController.SetCard(skinCard.skinIcon,skinCard.name);
         onRegisterSkinCard.Invoke(skinCardController);
     }
 

@@ -10,6 +10,13 @@ public class SkinPreviewNavigator : MonoBehaviour
     [SerializeField] private Image skinImagePlace;
     [SerializeField] private SkinCardDisplayer skinCardDisplayer;
 
+    private void Start()
+    {
+        var skin = PlayerPrefs.GetString(PlayerPrefKeys.SKIN,"Mario");
+        var path = $"{skin}/{skin}";
+        skinImagePlace.sprite = Resources.Load<Sprite>(path);
+    }
+    
     private void OnEnable()
     {
         skinCardDisplayer.onRegisterSkinCard += RegisterCard;

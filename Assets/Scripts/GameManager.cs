@@ -15,5 +15,6 @@ public class GameManager : MonoBehaviourPun
     {
         var player = PhotonNetwork.Instantiate("Player", startPosition.position, Quaternion.identity);
         positionMapper.SetTarget(player);
+        positionMapper.UpdateGraphics(player.GetComponent<SpriteRenderer>().sprite);
     }
 }

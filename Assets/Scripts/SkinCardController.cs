@@ -11,6 +11,8 @@ public class SkinCardController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI cardText;
 
     public Action<Sprite> onSkinChange;
+
+    private GameObject _skinPrefab;
     
     public void SetCard(Sprite skin, string name)
     {
@@ -20,7 +22,7 @@ public class SkinCardController : MonoBehaviour
 
     public void SelectSkin()
     {
-        PlayerPrefs.SetString("skin",cardSkin.sprite.name);
+        PlayerPrefs.SetString(PlayerPrefKeys.SKIN,cardText.text);
         onSkinChange.Invoke(cardSkin.sprite);
     }
 }

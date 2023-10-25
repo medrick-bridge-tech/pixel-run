@@ -31,4 +31,9 @@ public class PositionMapper : MonoBehaviour
     {
         target = targetObject;
     }
+
+    public void UpdateGraphics(Sprite targetSprite)
+    {
+        slider.handleRect.GetComponent<Image>().sprite = targetSprite;
+    }
 }

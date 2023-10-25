@@ -7,7 +7,8 @@ using UnityEngine;
 public class SkinCard{
     public string name;
     public int price;
-    public Sprite skinSprite;
+    public Sprite skinIcon;
+    public GameObject skinPrefab;
 }
 
 [CreateAssetMenu(fileName = "Skin", menuName = "Skin")]
