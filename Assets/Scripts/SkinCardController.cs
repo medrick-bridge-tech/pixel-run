@@ -14,16 +14,15 @@ public class SkinCardController : MonoBehaviour
 
     private GameObject _skinPrefab;
     
-    public void SetCard(Sprite skin, string name, GameObject skinPrefab)
+    public void SetCard(Sprite skin, string name)
     {
         cardSkin.sprite = skin;
         cardText.text = name;
-        _skinPrefab = skinPrefab;
     }
 
     public void SelectSkin()
     {
-        PlayerPrefs.SetString("skin",_skinPrefab.name);
+        PlayerPrefs.SetString(PlayerPrefKeys.SKIN,cardText.text);
         onSkinChange.Invoke(cardSkin.sprite);
     }
 }

@@ -12,10 +12,9 @@ public class SkinPreviewNavigator : MonoBehaviour
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("skin"))
-            skinImagePlace.sprite = Resources.Load<GameObject>(PlayerPrefs.GetString("skin")).GetComponent<SpriteRenderer>().sprite;
-        else
-            skinImagePlace.sprite = Resources.Load<GameObject>("Mario_Prefab").GetComponent<SpriteRenderer>().sprite;
+        var skin = PlayerPrefs.GetString(PlayerPrefKeys.SKIN,"Mario");
+        var path = $"{skin}/{skin}";
+        skinImagePlace.sprite = Resources.Load<Sprite>(path);
     }
     
     private void OnEnable()

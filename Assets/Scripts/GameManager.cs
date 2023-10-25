@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviourPun
     [SerializeField] private PhotonCountdown photonCountdown;
 
     private GameObject _player;
+
     private void OnEnable()
     {
         photonCountdown.onRaceStart += StartRace;
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviourPun
     {
         _player = PhotonNetwork.Instantiate("Player", startPosition.position, Quaternion.identity);
         positionMapper.SetTarget(_player);
+        positionMapper.UpdateGraphics(_player.GetComponent<SpriteRenderer>().sprite);
     }
 
     private void StartRace()
