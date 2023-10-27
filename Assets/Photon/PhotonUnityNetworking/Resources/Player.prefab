@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptsToIgnore:
   - {fileID: 1557507696587253083}
+  - {fileID: 1557507696587253084}
 --- !u!82 &1557507696587253085
 AudioSource:
   m_ObjectHideFlags: 0
@@ -302,7 +303,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e97494be7ae748c499d8044e96c19954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loseUI: {fileID: 0}
   loseSound: {fileID: 8300000, guid: 1b4d051a187150c42bdfe9be398c374d, type: 3}
   loseJump: 10
 --- !u!96 &2343362072970769019
