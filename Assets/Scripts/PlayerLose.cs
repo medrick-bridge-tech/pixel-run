@@ -18,7 +18,7 @@ public class PlayerLose : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private PhotonView _photonView;
 
-    public Action onLoseGame = () => {};
+    public Action<PhotonView> onLoseGame;
 
     private void Awake()
     {
@@ -32,12 +32,11 @@ public class PlayerLose : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
             if (_photonView.IsMine)
             {
-
                 _animator.SetBool("IsAlive", false);
                 Destroy(GetComponent<BoxCollider2D>());
                 _rigidbody2D.AddForce(new Vector2(0, loseJump), ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(loseSound);
-                onLoseGame.Invoke();
+                onLoseGame.Invoke(_photonView);
             }
             else
             {
