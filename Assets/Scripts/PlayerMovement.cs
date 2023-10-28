@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Move Properties")]
+    public VariableJoystick joystick;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
     [Header("Sound Properties")]
@@ -20,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private AudioSource _audioSource;
+    
 
     private void Awake()
     {
@@ -42,20 +45,24 @@ public class PlayerMovement : MonoBehaviour
 
     private void InputHandler2D()
     {
-        _xVector = Input.GetAxisRaw("Horizontal");
+        if (joystick != null)
+            _xVector = Mathf.Round(joystick.Horizontal);
+        else
+            _xVector = Input.GetAxisRaw("Horizontal");
     }
-    
+
     private void HandleMove()
     {
         if (_animator.GetBool("IsAlive") && _moveable)
-        {
             Run();
-        }
 
-        if (Input.GetKeyDown(KeyCode.Space) && IsOnGround() && _moveable)
+        if (Input.GetKeyDown(KeyCode.Space) || IsLeftScreenTouched())
         {
-            _audioSource.PlayOneShot(jumpSound);
-            Jump();
+            if (IsOnGround() && _moveable)
+            {
+                _audioSource.PlayOneShot(jumpSound);
+                Jump();
+            }
         }
 
         if (_xVector != 0)
@@ -114,5 +121,23 @@ public class PlayerMovement : MonoBehaviour
     public void Unfreeze()
     {
         _moveable = true;
+    }
+
+    private bool IsLeftScreenTouched()
+    {
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            if (touch.phase == TouchPhase.Began)
+            {
+                if (touch.position.x < Screen.width / 2)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviourPun, IOnEventCallback
     [SerializeField] private PhotonCountdown photonCountdown;
     [SerializeField] private Canvas loseUICanvas;
 
+    [SerializeField] private VariableJoystick moveJoyStick;
     private GameObject _player;
 
     private void OnEnable()
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviourPun, IOnEventCallback
     private void Awake()
     {
         _player = PhotonNetwork.Instantiate("Player", startPosition.position, Quaternion.identity);
+        _player.GetComponent<PlayerMovement>().joystick = moveJoyStick;
         positionMapper.SetTarget(_player);
         positionMapper.UpdateGraphics(_player.GetComponent<SpriteRenderer>().sprite);
         virtualCamera.Follow = _player.transform;
