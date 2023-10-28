@@ -1771,7 +1771,7 @@ namespace Photon.Pun
             {
                 if (offlineModeRoom != null)
                 {
-                    Debug.LogError("CreateRoom failed. In offline mode you still have to leave a room to enter another.");
+                    Debug.Log("CreateRoom failed. In offline mode you still have to leave a room to enter another.");
                     return false;
                 }
                 EnterOfflineRoom(roomName, roomOptions, true);
@@ -1779,7 +1779,7 @@ namespace Photon.Pun
             }
             if (NetworkingClient.Server != ServerConnection.MasterServer || !IsConnectedAndReady)
             {
-                Debug.LogError("CreateRoom failed. Client is on " + NetworkingClient.Server + " (must be Master Server for matchmaking)" + (IsConnectedAndReady ? " and ready" : "but not ready for operations (State: " + NetworkingClient.State + ")") + ". Wait for callback: OnJoinedLobby or OnConnectedToMaster.");
+                Debug.Log("CreateRoom failed. Client is on " + NetworkingClient.Server + " (must be Master Server for matchmaking)" + (IsConnectedAndReady ? " and ready" : "but not ready for operations (State: " + NetworkingClient.State + ")") + ". Wait for callback: OnJoinedLobby or OnConnectedToMaster.");
                 return false;
             }
 
@@ -1904,7 +1904,7 @@ namespace Photon.Pun
             {
                 if (offlineModeRoom != null)
                 {
-                    Debug.LogError("JoinRoom failed. In offline mode you still have to leave a room to enter another.");
+                    Debug.Log("JoinRoom failed. In offline mode you still have to leave a room to enter another.");
                     return false;
                 }
                 EnterOfflineRoom(roomName, null, true);
@@ -1912,12 +1912,12 @@ namespace Photon.Pun
             }
             if (NetworkingClient.Server != ServerConnection.MasterServer || !IsConnectedAndReady)
             {
-                Debug.LogError("JoinRoom failed. Client is on " + NetworkingClient.Server + " (must be Master Server for matchmaking)" + (IsConnectedAndReady ? " and ready" : "but not ready for operations (State: " + NetworkingClient.State + ")") + ". Wait for callback: OnJoinedLobby or OnConnectedToMaster.");
+                Debug.Log("JoinRoom failed. Client is on " + NetworkingClient.Server + " (must be Master Server for matchmaking)" + (IsConnectedAndReady ? " and ready" : "but not ready for operations (State: " + NetworkingClient.State + ")") + ". Wait for callback: OnJoinedLobby or OnConnectedToMaster.");
                 return false;
             }
             if (string.IsNullOrEmpty(roomName))
             {
-                Debug.LogError("JoinRoom failed. A roomname is required. If you don't know one, how will you join?");
+                Debug.Log("JoinRoom failed. A roomname is required. If you don't know one, how will you join?");
                 return false;
             }
 
