@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviourPun
     [SerializeField] private PhotonCountdown photonCountdown;
     [SerializeField] private Canvas loseUICanvas;
     [SerializeField] private Canvas winUICanvas;
+    [SerializeField] private VariableJoystick variableJoystick;
     [SerializeField] private RaceWinHandler winHandler;
     
     private GameObject _player;
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviourPun
     private void Awake()
     {
         _player = PhotonNetwork.Instantiate("Player", startPosition.position, Quaternion.identity);
+        _player.GetComponent<PlayerMovement>().joystick = variableJoystick;
         _player.GetComponent<PlayerLose>().onLoseGame += RemovePlayer;
         positionMapper.SetTarget(_player);
         positionMapper.UpdateGraphics(_player.GetComponent<SpriteRenderer>().sprite);
