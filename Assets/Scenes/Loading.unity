@@ -396,6 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 440029126}
   - component: {fileID: 440029127}
+  - component: {fileID: 440029128}
   m_Layer: 0
   m_Name: Photon Manager
   m_TagString: Untagged
@@ -430,6 +431,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62d980c756abafb419f42d844451c57d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &440029128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440029124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f8d5241729470faab4be5e554d0a04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeoutTime: 30
+  errorUICanvas: {fileID: 6224329859355388555, guid: 094fb19619bd33f4f944c8d7c2b29bb1, type: 3}
 --- !u!1 &602323849
 GameObject:
   m_ObjectHideFlags: 0
