@@ -130,12 +130,8 @@ public class PlayerMovement : MonoBehaviour
             Touch touch = Input.GetTouch(0);
 
             if (touch.phase == TouchPhase.Began)
-            {
                 if (touch.position.x < Screen.width / 2)
-                {
                     return true;
-                }
-            }
         }
 
         return false;
