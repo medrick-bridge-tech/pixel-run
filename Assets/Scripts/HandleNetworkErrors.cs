@@ -83,4 +83,10 @@ public class HandleNetworkErrors : MonoBehaviourPunCallbacks
         }
         Destroy(errorUI,5);
     }
+
+    public override void OnLeftRoom()
+    {
+        LoadingData.SceneToLoad = "Menu";
+        SceneManager.LoadScene("Loading");
+    }
 }
