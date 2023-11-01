@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviourPun
     
     [SerializeField] List<PhotonView> _playersList = new List<PhotonView>();
     public List<PhotonView> PlayersList => _playersList;
+    public CinemachineVirtualCamera VirtualCamera => virtualCamera;
 
     private void OnEnable()
     {
@@ -97,11 +98,13 @@ public class GameManager : MonoBehaviourPun
     private void DisplayLose()
     {
         loseUICanvas.gameObject.SetActive(true);
+        _isGameStart = false;
     }
 
     private void DisplayWin()
     {
-        winUICanvas.gameObject.SetActive(true);
+        winHandler.DisplayWin();
+        _isGameStart = false;
     }
 
     private int GetPlayersCount()

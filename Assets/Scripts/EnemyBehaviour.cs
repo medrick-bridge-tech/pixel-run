@@ -9,6 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float jumpForce;
     
     private float _xVector;
+    private float _viewRangeDistance;
     private Animator _animator;
     private Rigidbody2D _rigidbody2D;
     private BoxCollider2D _boxCollider2D;
@@ -19,6 +20,7 @@ public class EnemyBehaviour : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _boxCollider2D = GetComponent<BoxCollider2D>();
         _xVector = -1f;
+        _viewRangeDistance = 1f;
     }
 
     private void Update()
@@ -31,7 +33,7 @@ public class EnemyBehaviour : MonoBehaviour
         float horizontalMovement = _xVector * moveSpeed * Time.deltaTime;
         transform.Translate(new Vector3(horizontalMovement, 0, 0));
 
-        var hit = Physics2D.Raycast(transform.position, _xVector * transform.right, 0.5f,
+        var hit = Physics2D.Raycast(transform.position, _xVector * transform.right, _viewRangeDistance,
             LayerMask.GetMask("Ground"));
         if (hit.collider != null)
             Flip();

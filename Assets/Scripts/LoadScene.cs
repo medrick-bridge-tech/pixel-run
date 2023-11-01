@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Object = UnityEngine.Object;
@@ -14,6 +15,11 @@ public class LoadScene : MonoBehaviour
     {
         LoadingData.SceneToLoad = sceneName;
         SceneManager.LoadScene("Loading");
+    }
+
+    public void LeaveRoom()
+    {
+        PhotonNetwork.LeaveRoom();
     }
 
     public void LoadByObject(Object sceneObject)
