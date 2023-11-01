@@ -31,7 +31,7 @@ public class EnemyBehaviour : MonoBehaviour
         float horizontalMovement = _xVector * moveSpeed * Time.deltaTime;
         transform.Translate(new Vector3(horizontalMovement, 0, 0));
 
-        var hit = Physics2D.Raycast(transform.position, _xVector * transform.right, 0.5f,
+        var hit = Physics2D.Raycast(transform.position, _xVector * transform.right, 1f,
             LayerMask.GetMask("Ground"));
         if (hit.collider != null)
             Flip();
