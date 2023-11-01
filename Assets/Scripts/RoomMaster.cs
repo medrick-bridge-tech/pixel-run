@@ -19,9 +19,7 @@ public class RoomMaster : MonoBehaviourPunCallbacks
     {
         string roomID = "";
         for (int i = 0; i < roomIDDigits; i++)
-        {
             roomID += Random.Range(0, 10).ToString();
-        }
         PhotonNetwork.CreateRoom(roomID,new RoomOptions { MaxPlayers = roomCapacity}, TypedLobby.Default);
     }
 
