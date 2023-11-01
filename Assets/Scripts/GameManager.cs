@@ -97,11 +97,13 @@ public class GameManager : MonoBehaviourPun
     private void DisplayLose()
     {
         loseUICanvas.gameObject.SetActive(true);
+        _isGameStart = false;
     }
 
     private void DisplayWin()
     {
-        winUICanvas.gameObject.SetActive(true);
+        winHandler.DisplayWin();
+        _isGameStart = false;
     }
 
     private int GetPlayersCount()
