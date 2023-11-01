@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviourPun
     
     [SerializeField] List<PhotonView> _playersList = new List<PhotonView>();
     public List<PhotonView> PlayersList => _playersList;
+    public CinemachineVirtualCamera VirtualCamera => virtualCamera;
 
     private void OnEnable()
     {
