@@ -6,7 +6,6 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.XR;
 
 [RequireComponent(typeof(AudioSource))]
