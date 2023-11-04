@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        _rigidbody2D.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
+        _rigidbody2D.velocity = new Vector2(0, jumpSpeed);
     }
 
     private void ChangeScale(Vector2 value)
