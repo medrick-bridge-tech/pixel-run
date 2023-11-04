@@ -177,6 +177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joystick: {fileID: 0}
+  jumpButton: {fileID: 0}
   moveSpeed: 5
   jumpSpeed: 7
   jumpSound: {fileID: 8300000, guid: f9a5719ce3797bd45b895d942c0cc1a5, type: 3}
