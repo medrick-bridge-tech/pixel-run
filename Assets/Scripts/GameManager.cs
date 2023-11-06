@@ -82,7 +82,6 @@ public class GameManager : MonoBehaviourPun
     private void RemovePlayer(PhotonView playerView)
     {
         _playersList.Remove(playerView);
-        virtualCamera.GetComponent<CameraHandler>().FindNewTarget();
     }
 
     private void HandleRace()
