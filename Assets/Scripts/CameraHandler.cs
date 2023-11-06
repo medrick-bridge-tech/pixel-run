@@ -16,11 +16,26 @@ public class CameraHandler : MonoBehaviour
         _virtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
+    private void Update()
+    {
+        CheckTargetExist();
+    }
+
+    private void CheckTargetExist()
+    {
+        if (_virtualCamera.Follow == null)
+        {
+            FindNewTarget();
+        }
+    }
+
     public void FindNewTarget()
     {
-        var player = PhotonNetwork.LocalPlayer.GetNext();
-        if (player != null)
+        var players = PhotonNetwork.PlayerListOthers;
+        Debug.Log("Try to find new target");
+        if (players.Length != 0)
         {
+            var player = players[Random.Range(0, players.Length)];
             var viewID = player.ActorNumber;
             viewID = (viewID * 1000) + 1;
             PhotonView photonView = PhotonNetwork.GetPhotonView(viewID);
