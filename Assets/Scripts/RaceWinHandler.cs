@@ -27,7 +27,10 @@ public class RaceWinHandler : MonoBehaviour
             Destroy(other.gameObject.GetComponent<PlayerMovement>());
             other.GetComponent<Animator>().SetFloat("Speed", 0);
             GetComponent<AudioSource>().PlayOneShot(audioClip);
-            gameManager.VirtualCamera.GetComponent<CameraHandler>().FindNewTarget();
+            if (PhotonNetwork.LocalPlayer == other.GetComponent<PhotonView>().Controller)
+            {
+                gameManager.VirtualCamera.GetComponent<CameraHandler>().FindNewTarget();
+            }
         }
     }
     
