@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        _rigidbody2D.velocity = new Vector2(0, jumpSpeed);
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpSpeed);
     }
 
     private void ChangeScale(Vector2 value)
