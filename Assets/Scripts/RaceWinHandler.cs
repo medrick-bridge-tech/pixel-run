@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Cinemachine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
@@ -29,6 +30,8 @@ public class RaceWinHandler : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(audioClip);
             if (PhotonNetwork.LocalPlayer == other.GetComponent<PhotonView>().Controller)
             {
+                var playerCamera = other.gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
+                Destroy(playerCamera);
             }
         }
     }
