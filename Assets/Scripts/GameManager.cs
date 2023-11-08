@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviourPun
 {
     [SerializeField] private Transform startPosition;
     [SerializeField] private PositionMapper positionMapper;
-    [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private PhotonCountdown photonCountdown;
     [SerializeField] private Canvas loseUICanvas;
     [SerializeField] private Canvas winUICanvas;
@@ -30,7 +29,6 @@ public class GameManager : MonoBehaviourPun
     
     [SerializeField] List<PhotonView> _playersList = new List<PhotonView>();
     public List<PhotonView> PlayersList => _playersList;
-    public CinemachineVirtualCamera VirtualCamera => virtualCamera;
 
     private void OnEnable()
     {
@@ -51,7 +49,6 @@ public class GameManager : MonoBehaviourPun
         _player.GetComponent<PlayerLose>().onLoseGame += RemovePlayer;
         positionMapper.SetTarget(_player);
         positionMapper.UpdateGraphics(_player.GetComponent<SpriteRenderer>().sprite);
-        virtualCamera.Follow = _player.transform;
     }
 
     private void Start()

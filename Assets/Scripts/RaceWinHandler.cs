@@ -29,7 +29,6 @@ public class RaceWinHandler : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(audioClip);
             if (PhotonNetwork.LocalPlayer == other.GetComponent<PhotonView>().Controller)
             {
-                gameManager.VirtualCamera.GetComponent<CameraHandler>().FindNewTarget();
             }
         }
     }
