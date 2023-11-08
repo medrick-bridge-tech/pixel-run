@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviourPun
     [SerializeField] private Transform startPosition;
     [SerializeField] private PositionMapper positionMapper;
     [SerializeField] private PhotonCountdown photonCountdown;
+    [SerializeField] private Collider2D gameRoomConfiner2D;
     [SerializeField] private Canvas loseUICanvas;
     [SerializeField] private Canvas winUICanvas;
     [SerializeField] private VariableJoystick variableJoystick;
@@ -47,6 +48,10 @@ public class GameManager : MonoBehaviourPun
         _player.GetComponent<PlayerMovement>().joystick = variableJoystick;
         _player.GetComponent<PlayerMovement>().jumpButton = jumpButton;
         _player.GetComponent<PlayerLose>().onLoseGame += RemovePlayer;
+
+        var playerCamera = _player.GetComponentInChildren<CinemachineVirtualCamera>();
+        playerCamera.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = gameRoomConfiner2D;
+        
         positionMapper.SetTarget(_player);
         positionMapper.UpdateGraphics(_player.GetComponent<SpriteRenderer>().sprite);
     }
