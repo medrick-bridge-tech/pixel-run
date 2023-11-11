@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Move Properties")]
     public VariableJoystick joystick;
+    public JumpButton jumpButton;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpSpeed;
     [Header("Sound Properties")]
@@ -22,7 +23,6 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Animator _animator;
     private AudioSource _audioSource;
-    
 
     private void Awake()
     {
@@ -40,13 +40,14 @@ public class PlayerMovement : MonoBehaviour
     {
         InputHandler2D();
         HandleMove();
+        HandleJump();
         HandleAnimation();
     }
 
     private void InputHandler2D()
     {
         if (joystick != null)
-            _xVector = Mathf.Round(joystick.Horizontal);
+            _xVector = joystick.Horizontal;
         else
             _xVector = Input.GetAxisRaw("Horizontal");
     }
@@ -56,19 +57,20 @@ public class PlayerMovement : MonoBehaviour
         if (_animator.GetBool("IsAlive") && _moveable)
             Run();
 
-        if (Input.GetKeyDown(KeyCode.Space) || IsLeftScreenTouched())
+        if (Mathf.Round(_xVector) != 0)
         {
+            ChangeScale(new Vector2(Mathf.Round(_xVector),transform.localScale.y));
+        }
+    }
+
+    private void HandleJump()
+    {
+        if(jumpButton.isJumpButtonTouched)
             if (IsOnGround() && _moveable)
             {
                 _audioSource.PlayOneShot(jumpSound);
                 Jump();
             }
-        }
-
-        if (_xVector != 0)
-        {
-            ChangeScale(new Vector2(_xVector,transform.localScale.y));
-        }
     }
 
     private void Run()
@@ -78,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        _rigidbody2D.AddForce(transform.up * jumpSpeed, ForceMode2D.Impulse);
+        _rigidbody2D.velocity = new Vector2(_rigidbody2D.velocity.x, jumpSpeed);
     }
 
     private void ChangeScale(Vector2 value)
@@ -114,26 +116,12 @@ public class PlayerMovement : MonoBehaviour
         hit = Physics2D.Raycast(transform.position, -transform.up, _distanceFromEarth, LayerMask.GetMask("Ground"));
         if (hit.collider != null)
             return true;
-        
+
         return false;
     }
 
     public void Unfreeze()
     {
         _moveable = true;
-    }
-
-    private bool IsLeftScreenTouched()
-    {
-        if (Input.touchCount > 0)
-        {
-            Touch touch = Input.GetTouch(0);
-
-            if (touch.phase == TouchPhase.Began)
-                if (touch.position.x < Screen.width / 2)
-                    return true;
-        }
-
-        return false;
     }
 }

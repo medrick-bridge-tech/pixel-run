@@ -37,7 +37,13 @@ public class PlayerLose : MonoBehaviour
                 _rigidbody2D.AddForce(new Vector2(0, loseJump), ForceMode2D.Impulse);
                 GetComponent<AudioSource>().PlayOneShot(loseSound);
                 onLoseGame.Invoke(_photonView);
-                PhotonNetwork.Destroy(gameObject);
+                StartCoroutine(Die());
             }
+    }
+
+    private IEnumerator Die()
+    {
+        yield return new WaitForSeconds(3);
+        PhotonNetwork.Destroy(gameObject);
     }
 }

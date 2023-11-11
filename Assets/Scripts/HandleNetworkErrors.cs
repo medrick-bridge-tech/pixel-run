@@ -3,7 +3,6 @@ using System.Collections;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
-using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -75,7 +74,7 @@ public class HandleNetworkErrors : MonoBehaviourPunCallbacks
 
     private void DisplayErrorUI(string error)
     {
-        var errorUI = Instantiate(errorUICanvas, transform.position, quaternion.identity);
+        var errorUI = Instantiate(errorUICanvas, transform.position, Quaternion.identity);
         var errorTextMesh = errorUI.GetComponentInChildren<TextMeshProUGUI>();
         if (errorTextMesh != null)
         {

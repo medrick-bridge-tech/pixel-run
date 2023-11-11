@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50d912f05843f254a88f234d977e83c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomCapacity: 2
+  roomCapacity: 1
   roomIDDigits: 3
 --- !u!1 &1098088934
 GameObject:
@@ -1387,14 +1387,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1055493454}
         m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
-        m_MethodName: LoadByObject
-        m_Mode: 2
+        m_MethodName: LoadByName
+        m_Mode: 5
         m_Arguments:
-          m_ObjectArgument: {fileID: 102900000, guid: ab081c4910745a84dbab55ff66be3de0, type: 3}
+          m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Menu
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1189962476
@@ -2292,6 +2292,8 @@ MonoBehaviour:
   m_Value: 0
   m_Options:
     m_Options:
+    - m_Text: 1
+      m_Image: {fileID: 0}
     - m_Text: 2
       m_Image: {fileID: 0}
     - m_Text: 3
@@ -2961,7 +2963,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 2
+  m_text: 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e0bb0548e0a22524bba1985f267c1b58, type: 2}
   m_sharedMaterial: {fileID: -7789423240945551321, guid: e0bb0548e0a22524bba1985f267c1b58, type: 2}

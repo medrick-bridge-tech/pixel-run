@@ -2,11 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Cinemachine;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.XR;
 
 [RequireComponent(typeof(AudioSource))]
@@ -28,7 +28,11 @@ public class RaceWinHandler : MonoBehaviour
             Destroy(other.gameObject.GetComponent<PlayerMovement>());
             other.GetComponent<Animator>().SetFloat("Speed", 0);
             GetComponent<AudioSource>().PlayOneShot(audioClip);
-            gameManager.VirtualCamera.GetComponent<CameraHandler>().FindNewTarget();
+            if (PhotonNetwork.LocalPlayer == other.GetComponent<PhotonView>().Controller)
+            {
+                var playerCamera = other.gameObject.GetComponentInChildren<CinemachineVirtualCamera>();
+                Destroy(playerCamera);
+            }
         }
     }
     

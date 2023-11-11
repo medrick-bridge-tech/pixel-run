@@ -15,11 +15,12 @@ public class GameManager : MonoBehaviourPun
 {
     [SerializeField] private Transform startPosition;
     [SerializeField] private PositionMapper positionMapper;
-    [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private PhotonCountdown photonCountdown;
+    [SerializeField] private Collider2D gameRoomConfiner2D;
     [SerializeField] private Canvas loseUICanvas;
     [SerializeField] private Canvas winUICanvas;
     [SerializeField] private VariableJoystick variableJoystick;
+    [SerializeField] private JumpButton jumpButton;
     [SerializeField] private RaceWinHandler winHandler;
     
     private GameObject _player;
@@ -29,7 +30,6 @@ public class GameManager : MonoBehaviourPun
     
     [SerializeField] List<PhotonView> _playersList = new List<PhotonView>();
     public List<PhotonView> PlayersList => _playersList;
-    public CinemachineVirtualCamera VirtualCamera => virtualCamera;
 
     private void OnEnable()
     {
@@ -46,10 +46,14 @@ public class GameManager : MonoBehaviourPun
     {
         _player = PhotonNetwork.Instantiate("Player", startPosition.position, Quaternion.identity);
         _player.GetComponent<PlayerMovement>().joystick = variableJoystick;
+        _player.GetComponent<PlayerMovement>().jumpButton = jumpButton;
         _player.GetComponent<PlayerLose>().onLoseGame += RemovePlayer;
+
+        var playerCamera = _player.GetComponentInChildren<CinemachineVirtualCamera>();
+        playerCamera.GetComponent<CinemachineConfiner2D>().m_BoundingShape2D = gameRoomConfiner2D;
+        
         positionMapper.SetTarget(_player);
         positionMapper.UpdateGraphics(_player.GetComponent<SpriteRenderer>().sprite);
-        virtualCamera.Follow = _player.transform;
     }
 
     private void Start()
@@ -80,7 +84,6 @@ public class GameManager : MonoBehaviourPun
     private void RemovePlayer(PhotonView playerView)
     {
         _playersList.Remove(playerView);
-        virtualCamera.GetComponent<CameraHandler>().FindNewTarget();
     }
 
     private void HandleRace()
