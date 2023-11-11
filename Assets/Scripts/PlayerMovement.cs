@@ -36,10 +36,14 @@ public class PlayerMovement : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         InputHandler2D();
         HandleMove();
+    }
+
+    private void Update()
+    {
         HandleJump();
         HandleAnimation();
     }
@@ -75,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Run()
     {
-        transform.position += (Vector3)new Vector2(_xVector * moveSpeed * Time.deltaTime, 0);
+        _rigidbody2D.velocity = new Vector2(moveSpeed * _xVector, _rigidbody2D.velocity.y);
     }
 
     private void Jump()
